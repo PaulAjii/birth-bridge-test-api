@@ -1,13 +1,13 @@
 import Hospital from "../models/hospital";
 import { NextFunction, Request, Response } from "express";
-// import { httpResponse } from "../types/response"
-// import { IHospital } from "../types/hospital";
+import { httpResponse } from "../types/response";
+import { IHospital } from "../types/hospital";
 import { CustomError } from "../middleware/error.middleware";
 import { isValidEmail, isValidPassword } from "../utils";
 
 export const registerHospital = async (
   req: Request,
-  res: Response,
+  res: Response<httpResponse<IHospital>>,
   next: NextFunction
 ): Promise<void> => {
   try {
@@ -79,6 +79,35 @@ export const registerHospital = async (
     res.status(201).json({
       status: "success",
       message: "Hospital Registered Successfully",
+    });
+  } catch (error: any) {
+    console.error(error.message);
+    next(error);
+  }
+};
+
+export const getAllHospitals = async (
+  _req: Request,
+  res: Response<httpResponse<IHospital[]>>,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const hospitals = (await Hospital.find()
+      .select("-password")
+      .lean()) as IHospital[];
+
+    if (!hospitals || hospitals.length === 0) {
+      res.status(200).json({
+        status: "success",
+        message: "No hospital found",
+        data: [],
+      });
+    }
+
+    res.status(200).json({
+      status: "success",
+      message: "Hospitals fetched successfully",
+      data: hospitals,
     });
   } catch (error: any) {
     console.error(error.message);

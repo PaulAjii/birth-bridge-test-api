@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import { Types } from "mongoose";
 
 export interface IHospital {
-  _id?: string;
+  _id?: Types.ObjectId;
   state: string;
   lga: string;
   hospitalName: string;
@@ -10,8 +10,8 @@ export interface IHospital {
   phone_number: string;
   email_address: string;
   password: string;
-  healthCareWorkers: string;
-  patients: string;
+  healthCareWorkers: Types.ObjectId[];
+  patients: Types.ObjectId[];
   createdAt?: Date;
   updatedAt?: Date;
   __v?: number;
