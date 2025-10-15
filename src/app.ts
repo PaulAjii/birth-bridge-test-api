@@ -6,6 +6,7 @@ dotenv.config();
 
 import connectDB from "./db/conn";
 import errorMiddleware from "./middleware/error.middleware";
+import hospitalRoutes from "./routes/hospital.routes";
 
 const app: Application = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+app.use("/api/v1/hospitals", hospitalRoutes);
+
 app.get("/", (_, res: Response) => {
   res.status(200).json({
     status: "success",
