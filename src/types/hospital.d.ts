@@ -1,5 +1,5 @@
 export interface IHospital {
-  id?: string;
+  _id?: string;
   state: string;
   lga: string;
   hospitalName: string;
@@ -12,4 +12,5 @@ export interface IHospital {
   patients: string;
   createdAt?: Date;
   updatedAt?: Date;
+  __v?: number;
 }
