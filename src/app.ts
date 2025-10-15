@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import connectDB from "./db/conn";
+import errorMiddleware from "./middleware/error.middleware";
 
 const app: Application = express();
 
@@ -19,6 +20,8 @@ app.get("/", (_, res: Response) => {
     message: "Welcome to the BirthBridge Test API",
   });
 });
+
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3000;
 
