@@ -48,17 +48,21 @@ const hospitalSchema = new mongoose.Schema(
       minLength: 8,
     },
 
-    healthCareWorkers: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "HealthCareWorker",
-      required: true,
-    },
+    healthCareWorkers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "HealthCareWorker",
+        required: true,
+      },
+    ],
 
-    patients: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Patient",
-      required: true,
-    },
+    patients: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Patient",
+        required: true,
+      },
+    ],
   },
   { timestamps: true }
 );
