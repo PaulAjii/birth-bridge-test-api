@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-interface CustomError extends Error {
+export interface CustomError extends Error {
   statusCode?: number;
   code?: number;
   errors?: Record<string, { message: string }>;

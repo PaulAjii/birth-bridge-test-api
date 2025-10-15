@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 export interface IHospital {
   _id?: string;
   state: string;
@@ -8,8 +10,8 @@ export interface IHospital {
   phone_number: string;
   email_address: string;
   password: string;
-  healthCareWorkers: string[];
-  patients: string[];
+  healthCareWorkers: string;
+  patients: string;
   createdAt?: Date;
   updatedAt?: Date;
   __v?: number;
