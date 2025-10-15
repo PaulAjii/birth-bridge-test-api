@@ -74,12 +74,11 @@ export const registerHospital = async (
       patients: [],
     });
 
-    const savedHospital = await hospital.save();
+    await hospital.save();
 
     res.status(201).json({
       status: "success",
       message: "Hospital Registered Successfully",
-      data: savedHospital,
     });
   } catch (error: any) {
     console.error(error.message);
