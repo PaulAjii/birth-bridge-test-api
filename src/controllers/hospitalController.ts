@@ -81,7 +81,6 @@ export const registerHospital = async (
       message: "Hospital Registered Successfully",
     });
   } catch (error: any) {
-    console.error(error.message);
     next(error);
   }
 };
@@ -94,7 +93,8 @@ export const getAllHospitals = async (
   try {
     const hospitals = (await Hospital.find()
       .select("-password")
-      .lean()) as IHospital[];
+      .lean()
+      .exec()) as IHospital[];
 
     if (!hospitals || hospitals.length === 0) {
       res.status(200).json({
@@ -110,7 +110,6 @@ export const getAllHospitals = async (
       data: hospitals,
     });
   } catch (error: any) {
-    console.error(error.message);
     next(error);
   }
 };
